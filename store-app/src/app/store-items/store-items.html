@@ -1,0 +1,23 @@
+<h3>Available items</h3>
+
+<form [formGroup]="form" (ngSubmit)="onShopItemAdd()">
+    <input type="text" formControlName="name" placeholder="name" />
+    <input type="text" formControlName="description" placeholder="description" />
+    <input type="number" formControlName="price" placeholder="price" />
+    <input type="text" formControlName="imageUrl" placeholder="image url" />
+    <button type="submit"">Add</button>
+</form>
+
+@for(item of items(); track item.id){
+    <app-store-item [item]="item" (delete)="onShopItemDelete($event)"></app-store-item>
+}
+
+
+<h3>Search items</h3>
+
+<form [formGroup]="searchForm">
+    <input placeholder="name" formControlName="name">
+    <input placeholder="Price from" formControlName="priceFrom" />
+    <input placeholder="Price to" formControlName="priceTo" />
+    <button type="submit" (click)="onSearch()">Search</button>
+</form>
